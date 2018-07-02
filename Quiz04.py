@@ -9,7 +9,7 @@ def dot(vector01,vector02):
     return None
     #If the lengths of the vectors are not equal to each other, then the algorithim does not compute and returns none.
   for i in range(len(vector01)):
-   #For the length of the vector i.
+  #For the length of the vector i.
     C.append(vector01[i] * vector02[i])
     #multiplies each element together and creates a list C.
   D = 0
@@ -60,6 +60,9 @@ def norm2(vector):
   '''
   result = 0
   for i in range(len(vector)):
+    if type(vector[i]) != int and type(vector[i]) != float and type(vector[i]) != complex:
+      print('error')
+      return None
     result = result +abs(vector[i])**2
     #Takes each element and squares the element and adds them together.
   result = result**.5
@@ -67,20 +70,33 @@ def norm2(vector):
   return result
 
 def modGramSchmidt(A):
+  '''
+  This function calculates the modified Gram Schmidt process. This takes in the matrix A and computes q and r. This normalizes the matrix A to get q. Then, this does the dot product to get a scalar. Then, the scalar is multiplied with q columns and creates a new row of A. Then, this functions appends the list for q and takes each element of r that is calculated and put each r in a matrix.
+  '''
   n = len(A)
   m = len(A[0])
   r = [[0]*n for row in range(n)]
   q = [ ]
   for i in range(n):
+    for j in range(m):
+      if type(A[i][j]) != int and type(A[i][j]) != float and type(A[i][j]) != complex:
+        print('error')
+        return None
     r[i][i] = norm2(A[i])
+    #taking the 2 norm of the column A.
     scalar = 1/r[i][i]
+    #creating a scalar
     qi = scalarMultVec(scalar,A[i])
+    #qi is a temporary variable. This is multiplying each element of A by the scalar. 
     q.append(qi)
+    #This is appending the list of q together.
     for j in range(i + 1,n):
-      r[i][j] = dot(q[i],A[j])
-      B = scalarMultVec(r[i][j],q[i])
+      r[j][i] = dot(q[i],A[j])
+      B = scalarMultVec(r[j][i],q[i])
+      #This is a temporary variable for the scalarMultVec function.
       A[j] = vecSubtraction(A[j],B)
-  return q, r
+      #
+  return [q, r]
 
 A = [[1,0,1],[2,1,0]]
 q, r = modGramSchmidt(A)
