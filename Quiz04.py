@@ -120,7 +120,7 @@ def modGramSchmidt(A):
       B = scalarMultVec(r[j][i],q[i])
       #This is a temporary variable for the scalarMultVec function.
       A[j] = vecSubtraction(A[j],B)
-      #
+      #This is taking each element of the row and subtract by temporary variable B.
   return [q, r]
 
 A = [[1,0,1],[2,1,0]]
