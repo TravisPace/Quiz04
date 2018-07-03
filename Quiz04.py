@@ -9,6 +9,13 @@ def dot(vector01,vector02):
     return None
     #If the lengths of the vectors are not equal to each other, then the algorithim does not compute and returns none.
   for i in range(len(vector01)):
+    if type(vector01[i]) != int and type(vector01[i]) != float and type(vector01[i]) != complex:
+      print('error')
+      return None
+    if type(vector02[i]) != int and type(vector02[i]) != float and type(vector02[i]) != complex:
+      print('error')
+      return None
+    A.append(vector01[i] - vector02[i])
   #For the length of the vector i.
     C.append(vector01[i] * vector02[i])
     #multiplies each element together and creates a list C.
@@ -30,6 +37,12 @@ def vecSubtraction(vector01,vector02):
     return None
     #If the lengths of the lists vector01 and vector02 do not equal each other, then this prints an error and returns none.
   for i in range(len(vector01)):
+    if type(vector01[i]) != int and type(vector01[i]) != float and type(vector01[i]) != complex:
+      print('error')
+      return None
+    if type(vector02[i]) != int and type(vector02[i]) != float and type(vector02[i]) != complex:
+      print('error')
+      return None
     A.append(vector01[i] - vector02[i])
     #This subtracts the lengths of vector01 and vector02 and adds each element of the list together.
   return A
@@ -43,7 +56,7 @@ def scalarMultVec(scalar,vector):
   if type(scalar) != int and type(scalar) != float and type(scalar) != complex:
     print('error')
     return None
-    #If the scalar is a list, then the algorithim will print error and return none.
+    #If the scalar is not an interger, float, or complex, it will return none.
   A = [ ]
   #A is an empty list.
   for i in range(len(vector)):
